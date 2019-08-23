@@ -21,18 +21,12 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    try {
-      storage.readData().then((String value) {
-        setState(() {
-          state = value;
-        });
-      });
-    } catch (e) {
-      // If encountering an error, return 0
+    
+    storage.readData().then((String value) {
       setState(() {
-          state = '';
+        state = value;
       });
-    }
+    });
   }
 
   Future<File> writeData() async {
@@ -184,7 +178,8 @@ class Storage {
 
       return body;
     } catch (e) {
-      return e.toString();
+      return '';
+      // return e.toString();
     }
   }
 
