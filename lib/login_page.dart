@@ -8,6 +8,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  TextEditingController emailText = TextEditingController();
+  TextEditingController passText = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
@@ -22,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     final email = TextFormField(
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      initialValue: 'alucard@gmail.com',
+      controller: emailText,
       decoration: InputDecoration(
         hintText: 'Email',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -32,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
 
     final password = TextFormField(
       autofocus: false,
-      initialValue: 'some password',
+      controller: passText,
       obscureText: true,
       decoration: InputDecoration(
         hintText: 'Password',
@@ -48,7 +52,9 @@ class _LoginPageState extends State<LoginPage> {
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () {
-          Navigator.of(context).pushNamed(HomePage.tag);
+          if(emailText.text == 'admin@gmail.com' && passText.text == '072'){
+            Navigator.of(context).pushNamed(HomePage.tag);
+          }
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
